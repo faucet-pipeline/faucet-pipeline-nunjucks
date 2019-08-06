@@ -17,7 +17,7 @@ module.exports = {
 	},
 
 	plugins: {
-		"nunjucks": {
+		nunjucks: {
 			plugin: path.resolve("../.."),
 			bucket: "static"
 		}
