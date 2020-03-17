@@ -19,7 +19,7 @@
 	},
 	"homepage": "https://www.faucet-pipeline.org",
 	"dependencies": {
-		"faucet-pipeline-core": "^1.2.2",
+		"faucet-pipeline-core": "^1.4.0",
 		"nunjucks": "^3.2.3",
 		"nunjucks-markdown": "^2.0.1"
 	},

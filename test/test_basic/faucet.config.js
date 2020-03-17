@@ -17,10 +17,5 @@ module.exports = {
 		webRoot: "./dist"
 	},
 
-	plugins: {
-		nunjucks: {
-			plugin: path.resolve("../.."),
-			bucket: "static"
-		}
-	}
+	plugins: [path.resolve(__dirname, "../..")]
 };

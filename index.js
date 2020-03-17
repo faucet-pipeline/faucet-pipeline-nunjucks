@@ -2,13 +2,19 @@ let nunjucks = require("nunjucks");
 let nunjucksMarkdown = require("nunjucks-markdown");
 let { loadExtension } = require("faucet-pipeline-core/lib/util");
 
-module.exports = (config, assetManager) => {
+module.exports = {
+	key: "nunjucks",
+	bucket: "static",
+	plugin: faucetNunjucks
+};
+
+function faucetNunjucks(config, assetManager) {
 	let render = buildRender(assetManager);
 	let bundlers = config.map(bundleConfig =>
 		makeBundler(bundleConfig, assetManager, render));
 
 	return filepaths => Promise.all(bundlers.map(bundle => bundle(filepaths)));
-};
+}
 
 function makeBundler(config, assetManager, render) {
 	let source = assetManager.resolvePath(config.source);
