@@ -20,7 +20,9 @@
 	"homepage": "https://www.faucet-pipeline.org",
 	"dependencies": {
 		"faucet-pipeline-core": "^1.2.2",
-		"nunjucks": "^3.1.6"
+		"marked": "^2.0.3",
+		"nunjucks": "^3.1.6",
+		"nunjucks-markdown": "^2.0.1"
 	},
 	"devDependencies": {
 		"eslint-config-fnd": "^1.8.0",
