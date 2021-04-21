@@ -1,8 +1,9 @@
 let nunjucks = require("nunjucks");
+let nunjucksMarkdown = require("nunjucks-markdown");
+let marked = require("marked");
 
 module.exports = (config, assetManager) => {
 	let render = buildRender(assetManager);
-
 	let bundlers = config.map(bundleConfig =>
 		makeBundler(bundleConfig, assetManager, render));
 
@@ -15,7 +16,7 @@ function makeBundler(config, assetManager, render) {
 
 	return filepaths => {
 		if(!filepaths || filepaths.includes(source)) {
-			render(source).
+			render(source, config.markdown).
 				then(res => assetManager.writeFile(target, res, {
 					fingerprint: false
 				})).
@@ -31,9 +32,11 @@ function buildRender(assetManager) {
 	let loader = new nunjucks.FileSystemLoader(".", { noCache: true });
 	let env = new nunjucks.Environment(loader);
 	env.addFilter("assetURL", identifier => assetManager.manifest.get(identifier));
+	nunjucksMarkdown.register(env, marked);
 
-	return source => {
+	return (source, markdownOptions) => {
 		return new Promise((resolve, reject) => {
+			marked.setOptions(markdownOptions);
 			env.render(source, (error, res) => {
 				if(error) {
 					return reject(error);

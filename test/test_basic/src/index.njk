@@ -7,3 +7,20 @@
 {% block section %}
 <p>This is aaa</p>
 {% endblock %}
+
+
+{% block md %}
+{% markdown %}
+# Faucet
+## I like
+{% endmarkdown %}
+{% endblock %}
+
+
+
+{% block externalmd %}
+{% markdown './src/content.md' %}
+{% markdown %}
+{% include './content.md' %}
+{% endmarkdown %}
+{% endblock %}

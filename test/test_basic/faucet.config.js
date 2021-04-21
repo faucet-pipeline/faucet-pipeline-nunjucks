@@ -4,7 +4,10 @@ let path = require("path");
 module.exports = {
 	nunjucks: [{
 		source: "./src/index.njk",
-		target: "./dist/index.html"
+		target: "./dist/index.html",
+		markdown: {
+			headerIds: false
+		}
 	}],
 
 	sass: [{
