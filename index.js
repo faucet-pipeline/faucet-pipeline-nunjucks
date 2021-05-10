@@ -1,6 +1,6 @@
 let nunjucks = require("nunjucks");
 let nunjucksMarkdown = require("nunjucks-markdown");
-let marked = require("marked");
+let { loadExtension } = require("faucet-pipeline-core/lib/util");
 
 module.exports = (config, assetManager) => {
 	let render = buildRender(assetManager);
@@ -32,11 +32,17 @@ function buildRender(assetManager) {
 	let loader = new nunjucks.FileSystemLoader(".", { noCache: true });
 	let env = new nunjucks.Environment(loader);
 	env.addFilter("assetURL", identifier => assetManager.manifest.get(identifier));
-	nunjucksMarkdown.register(env, marked);
-
-	return (source, markdownOptions) => {
+	return (source, markdown) => {
+		if(markdown) {
+			let marked = loadExtension("marked", "failed to load markdown library");
+			marked.setOptions({
+				headerIds: false
+			});
+			nunjucksMarkdown.register(env, marked);
+		} else if(env.hasExtension("markdown")) {
+			env.removeExtension("markdown");
+		}
 		return new Promise((resolve, reject) => {
-			marked.setOptions(markdownOptions);
 			env.render(source, (error, res) => {
 				if(error) {
 					return reject(error);

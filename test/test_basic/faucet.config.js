@@ -5,9 +5,7 @@ module.exports = {
 	nunjucks: [{
 		source: "./src/index.njk",
 		target: "./dist/index.html",
-		markdown: {
-			headerIds: false
-		}
+		markdown: true
 	}],
 
 	sass: [{
