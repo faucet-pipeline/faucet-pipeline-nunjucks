@@ -44,7 +44,7 @@ function buildRender(assetManager) {
 			marked.setOptions({
 				headerIds: false
 			});
-			nunjucksMarkdown.register(env, marked);
+			nunjucksMarkdown.register(env, s => marked.parse(s));
 		} else if(env.hasExtension("markdown")) {
 			env.removeExtension("markdown");
 		}
