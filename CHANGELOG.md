@@ -1,6 +1,13 @@
 faucet-pipeline-nunjucks version history
 ========================================
 
+v0.3.0
+------
+
+_2023-01-12_
+
+Maintenance release to update dependencies; no significant changes
+
 
 v0.2.0
 ------
