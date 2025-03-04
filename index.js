@@ -38,9 +38,9 @@ function buildRender(assetManager) {
 	let loader = new nunjucks.FileSystemLoader(".", { noCache: true });
 	let env = new nunjucks.Environment(loader);
 	env.addFilter("assetURL", identifier => assetManager.manifest.get(identifier));
-	return (source, markdown) => {
+	return async (source, markdown) => {
 		if(markdown) {
-			let marked = loadExtension("marked", "failed to load markdown library");
+			let marked = await loadExtension("marked", "failed to load markdown library");
 			marked.setOptions({
 				headerIds: false
 			});

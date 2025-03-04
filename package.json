@@ -22,7 +22,7 @@
 		"node": ">= 18"
 	},
 	"dependencies": {
-		"faucet-pipeline-core": "^2.0.0",
+		"faucet-pipeline-core": "^2.0.0 || ^3.0.0",
 		"nunjucks": "^3.2.3",
 		"nunjucks-markdown": "^2.0.1"
 	},
