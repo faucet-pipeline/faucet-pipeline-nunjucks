@@ -41,9 +41,6 @@ function buildRender(assetManager) {
 	return async (source, markdown) => {
 		if(markdown) {
 			let marked = await loadExtension("marked", "failed to load markdown library");
-			marked.setOptions({
-				headerIds: false
-			});
 			nunjucksMarkdown.register(env, s => marked.parse(s));
 		} else if(env.hasExtension("markdown")) {
 			env.removeExtension("markdown");
