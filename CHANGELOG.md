@@ -1,6 +1,15 @@
 faucet-pipeline-nunjucks version history
 ========================================
 
+v0.4.0
+------
+
+_TBD_
+
+maintenance release to update dependencies
+
+* bumped Node requirement to v20 or later, dropping support for obsolete versions
+
 v0.3.0
 ------
 
